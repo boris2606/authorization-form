@@ -43,6 +43,8 @@ registerLink.onclick = () =>{
     alert_txt.innerHTML = ''
     alert_txt.style.display = `none`
     confirm_txt.style.display = `none`
+    loginConfirm.value = ''
+    passConfirm.value = ''
 }
 autorization.onclick = () =>{
     autForm.style.display = 'flex'
@@ -57,10 +59,14 @@ loginBtn.onclick = () =>{
             confirm_txt.innerHTML = `Вітаю ${registerPerson.login}, авторизація пройшла успішно`
             confirm_txt.style.display = `block`
             alert_txt.style.display = `none`
+            loginConfirm.value = ''
+            passConfirm.value = ''
         } else {
             alert_txt.innerHTML = 'Користувача не знайдено'
             confirm_txt.style.display = `none`
             alert_txt.style.display = `block`
+            loginConfirm.value = ''
+            passConfirm.value = ''
         }
     }
 }
