@@ -55,6 +55,7 @@ loginBtn.onclick = () =>{
     let parsePersons = JSON.parse(raw)
     for (let i = 0; i < parsePersons.length; i++) {
         let registerPerson = parsePersons.find(person => person.login == loginConfirm.value.toUpperCase() && person.password == passConfirm.value.toUpperCase())
+        console.log(registerPerson);
         if (registerPerson != undefined){
             confirm_txt.innerHTML = `Вітаю ${registerPerson.login}, авторизація пройшла успішно`
             confirm_txt.style.display = `block`
@@ -68,6 +69,7 @@ loginBtn.onclick = () =>{
             loginConfirm.value = ''
             passConfirm.value = ''
         }
+        return registerPerson
     }
 }
 
