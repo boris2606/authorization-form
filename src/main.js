@@ -49,40 +49,50 @@ function showRegistrForm(){
     autForm.style.display = 'none'
     regForm.style.display = 'flex'
 }
+function hideAlertTxt(){
+    alert_txt.style.display = `none`
+    confirm_txt.style.display = `none`
+}
+
 registerLink.onclick = () =>{
     clearLoginForm()
     showRegistrForm()
     alert_txt.innerHTML = ''
-    alert_txt.style.display = `none`
-    confirm_txt.style.display = `none`
+    hideAlertTxt()
 }
 autorization.onclick = () =>{
     showAuthForm()
 }
 loginBtn.onclick = () =>{
+    let checkPersonPass = persons.find(person => person.login == loginConfirm.value.toLowerCase() && person.password != passConfirm.value.toLowerCase())
+    console.log(checkPersonPass);
     let registerPerson = persons.find(person => person.login == loginConfirm.value.toLowerCase() && person.password == passConfirm.value.toLowerCase())
     if (registerPerson != undefined){
         confirm_txt.innerHTML = `Вітаю ${registerPerson.login}, авторизація пройшла успішно`
         confirm_txt.style.display = `block`
         alert_txt.style.display = `none`
         clearLoginForm()
+    } else if (checkPersonPass != undefined){
+        hideAlertTxt()
+        alert('Невірно вказаний пароль користувача')
     } else {
         alert_txt.innerHTML = 'Користувача не знайдено'
         confirm_txt.style.display = `none`
         alert_txt.style.display = `block`
-        clearLoginForm()
     }
 }
-
 register.onclick = () => {
+    let registerPersonChek = persons.find(person => person.login == loginReg.value)
     if (passReg.value == passRegConfirm.value) {
         if (loginReg.value == false && ageReg.value == false && passReg.value == false &&  passRegConfirm.value == false){
             alert('Необхідно заповнити всі поля')
+        } else if (registerPersonChek){
+            alert('Нажаль такий користувач вже є в системі')
         } else {
             let obj = {
-                login: loginReg.value.toUpperCase(),
+                login: loginReg.value.toLowerCase(),
                 age: ageReg.value,
-                password: passReg.value.toUpperCase()
+                password: passReg.value.toLowerCase()
             }
             persons.push(obj)
             localStorage.setItem('person', JSON.stringify(persons))
