@@ -81,8 +81,8 @@ loginBtn.onclick = () =>{
     }
 }
 register.onclick = () => {
-    let registerPersonChek = persons.find(person => person.login == loginReg.value)
-    if (passReg.value == passRegConfirm.value) {
+    let registerPersonChek = persons.find(person => person.login == loginReg.value.toLowerCase())
+    if (passReg.value == passRegConfirm.value.toLowerCase()) {
         if (loginReg.value == false && ageReg.value == false && passReg.value == false &&  passRegConfirm.value == false){
             alert('Необхідно заповнити всі поля')
         } else if (registerPersonChek){
