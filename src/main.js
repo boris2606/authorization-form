@@ -65,7 +65,6 @@ autorization.onclick = () =>{
 }
 loginBtn.onclick = () =>{
     let checkPersonPass = persons.find(person => person.login == loginConfirm.value.toLowerCase() && person.password != passConfirm.value.toLowerCase())
-    console.log(checkPersonPass);
     let registerPerson = persons.find(person => person.login == loginConfirm.value.toLowerCase() && person.password == passConfirm.value.toLowerCase())
     if (registerPerson != undefined){
         confirm_txt.innerHTML = `Вітаю ${registerPerson.login}, авторизація пройшла успішно`
