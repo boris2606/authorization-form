@@ -37,39 +37,40 @@ if (tasksTemp && tasksTemp !== null) {
     }
 }
 
-registerLink.onclick = () =>{
-    autForm.style.display = 'none'
-    regForm.style.display = 'flex'
-    alert_txt.innerHTML = ''
-    alert_txt.style.display = `none`
-    confirm_txt.style.display = `none`
-    loginConfirm.value = ''
+function clearLoginForm(){
+    loginConfirm.value = '' 
     passConfirm.value = ''
 }
-autorization.onclick = () =>{
+function showAuthForm(){
     autForm.style.display = 'flex'
     regForm.style.display = 'none'
 }
+function showRegistrForm(){
+    autForm.style.display = 'none'
+    regForm.style.display = 'flex'
+}
+registerLink.onclick = () =>{
+    clearLoginForm()
+    showRegistrForm()
+    alert_txt.innerHTML = ''
+    alert_txt.style.display = `none`
+    confirm_txt.style.display = `none`
+}
+autorization.onclick = () =>{
+    showAuthForm()
+}
 loginBtn.onclick = () =>{
-    let raw = localStorage.getItem('person')
-    let parsePersons = JSON.parse(raw)
-    for (let i = 0; i < parsePersons.length; i++) {
-        let registerPerson = parsePersons.find(person => person.login == loginConfirm.value.toUpperCase() && person.password == passConfirm.value.toUpperCase())
-        console.log(registerPerson);
-        if (registerPerson != undefined){
-            confirm_txt.innerHTML = `Вітаю ${registerPerson.login}, авторизація пройшла успішно`
-            confirm_txt.style.display = `block`
-            alert_txt.style.display = `none`
-            loginConfirm.value = ''
-            passConfirm.value = ''
-        } else {
-            alert_txt.innerHTML = 'Користувача не знайдено'
-            confirm_txt.style.display = `none`
-            alert_txt.style.display = `block`
-            loginConfirm.value = ''
-            passConfirm.value = ''
-        }
-        return registerPerson
+    let registerPerson = persons.find(person => person.login == loginConfirm.value.toLowerCase() && person.password == passConfirm.value.toLowerCase())
+    if (registerPerson != undefined){
+        confirm_txt.innerHTML = `Вітаю ${registerPerson.login}, авторизація пройшла успішно`
+        confirm_txt.style.display = `block`
+        alert_txt.style.display = `none`
+        clearLoginForm()
+    } else {
+        alert_txt.innerHTML = 'Користувача не знайдено'
+        confirm_txt.style.display = `none`
+        alert_txt.style.display = `block`
+        clearLoginForm()
     }
 }
 
@@ -90,8 +91,7 @@ register.onclick = () => {
             passReg.value = ''
             passRegConfirm.value = ''
             alert('Вітаємо, реєстрація успішна, перейдіть до входу')
-            autForm.style.display = 'flex'
-            regForm.style.display = 'none'
+            showAuthForm()
         }
     } else {
         alert('Паролі не співпадають')
