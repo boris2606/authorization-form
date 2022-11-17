@@ -1,7 +1,6 @@
 import './styles/main.scss';
-// import './bootstrap.js';
-import './gmail.js';
-// import $ from "jquery"; // бібліотека jquery
+import './bootstrap.js';
+import $ from "jquery"; // бібліотека jquery
 
 // Форми
 let regForm = document.querySelector('.register_form')
