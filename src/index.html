@@ -4,11 +4,23 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
+        <!-- <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <meta name="google-signin-client_id" content="879776196657-orknjs7fslof1fphcbq6u7an0c3qpqpu.apps.googleusercontent.com"> -->
+        <!-- <meta name="google-signin-client_id" content="879776196657-orknjs7fslof1fphcbq6u7an0c3qpqpu.apps.googleusercontent.com"> -->
+        <!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
+        <!-- <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script> -->
         <title>Webpack 5</title>
         <!-- <link rel="icon" type="image/x-icon" href="/images/favicon.ico"> тут іконка вкладки -->
     </head>
     <body>
         <main class="wrapper_auth">
+            <div id="g_id_onload"
+                data-client_id="879776196657-orknjs7fslof1fphcbq6u7an0c3qpqpu.apps.googleusercontent.com"
+                data-callback="handleCredentialResponse">
+            </div>
+            <div class="g_id_signin" data-type="icon"></div>
+            <div class="g_id_signout" id="signout_button">Sign Out</div>
             <div class="register_form">
                 <p>Реєстрація</p>
                 <input type="text" placeholder="Введіть логін" class="reg_login">
