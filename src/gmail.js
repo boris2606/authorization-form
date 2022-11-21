@@ -1,11 +1,91 @@
-window.handleCredentialResponse = (response) => {
-    let person = response.getBasicProfile();
-    console.log('ID: ' + person.getId()); // Do not send to your backend! Use an ID token instead.
-    console.log('Name: ' + person.getName());
-    console.log('Image URL: ' + person.getImageUrl());
-    console.log('Email: ' + person.getEmail());
-  }
-const button = document.getElementById('signout_button');
-    button.onclick = () => {
-    google.accounts.id.disableAutoSelect();
+// onreadystatechange="if (this.readyState === 'complete') this.onload()
+      // Enter an API key from the Google API Console:
+      //   https://console.developers.google.com/apis/credentials
+var apiKey = 'AIzaSyA3kpl8-ADcJGXZKwCFCcsoUqaBToLGzE0';
+
+// Enter the API Discovery Docs that describes the APIs you want to
+// access. In this example, we are accessing the People API, so we load
+// Discovery Doc found here: https://developers.google.com/people/api/rest/
+var discoveryDocs = ["https://www.googleapis.com/discovery/v1/apis/people/v1/rest"];
+
+// Enter a client ID for a web application from the Google API Console:
+//   https://console.developers.google.com/apis/credentials?project=_
+// In your API Console project, add a JavaScript origin that corresponds
+//   to the domain where you will be running the script.
+var clientId = '879776196657-orknjs7fslof1fphcbq6u7an0c3qpqpu.apps.googleusercontent.com';
+
+// Enter one or more authorization scopes. Refer to the documentation for
+// the API or https://developers.google.com/people/v1/how-tos/authorizing
+// for details.
+var scopes = 'profile';
+
+var authorizeButton = document.querySelector('.authorize_button');
+var signoutButton = document.querySelector('.signout_button');
+
+window.onload = function handleClientLoad() {
+    // Load the API client and auth2 library
+    gapi.load('client:auth2', initClient);
+}
+
+function initClient() {
+    gapi.client.init({
+        apiKey: apiKey,
+        discoveryDocs: discoveryDocs,
+        clientId: clientId,
+        scope: scopes,
+        plugin_name:'App Name that you used in google developer console API' // Delete errors with "You create new client API"
+    }).then(function () {
+        // Listen for sign-in state changes.
+        gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+
+        // Handle the initial sign-in state.
+        updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+
+        authorizeButton.onclick = handleAuthClick;
+        signoutButton.onclick = handleSignoutClick;
+    });
+}
+
+function updateSigninStatus(isSignedIn) {
+    let notAuthClientWrapp = document.querySelector('.not_auth_client') // Wrapper of registration fields
+    let aythClientWrapp = document.querySelector('.auth_client')  // Wrapper Auth person
+    let txtAuth = document.querySelector('.auth_txt')
+    if (isSignedIn) {
+        authorizeButton.style.display = 'none';
+        signoutButton.style.display = 'block';
+        notAuthClientWrapp.style.display='none';
+        txtAuth.style.display='none'
+        makeApiCall();
+        aythClientWrapp.style.display='block'
+        document.querySelector('.wrapper_person_txt').style.display='none'
+    } else {
+        authorizeButton.style.display = 'block';
+        signoutButton.style.display = 'none';
+        notAuthClientWrapp.style.display='block'
+        aythClientWrapp.style.display='none'
+        txtAuth.style.display='block'
+        document.querySelector('.wrapper_person_txt').style.display='block'
+    }
+}
+
+// Load the API and make an API call.  Display the results on the screen.
+function makeApiCall(){
+    gapi.client.people.people.get({
+        'resourceName': 'people/me',
+        'personFields': 'emailAddresses,names,photos,locales', // Elemets of People API 
+    }).then(function(resp) {
+        let authClientWrapper = document.querySelector('.auth_client'); // Wrapper Auth person
+        authClientWrapper.innerHTML = `
+        <p class='client_tit_txt'> Вітаю, ${resp.result.names[0].displayName}</p>
+        <img class='img_auth_client' src='${resp.result.photos[0].url}'>
+        <p class='client_email'>${resp.result.emailAddresses[0].value}</p>
+        `
+    });
+}
+function handleAuthClick(event) {
+    gapi.auth2.getAuthInstance().signIn();
+}
+
+function handleSignoutClick(event) {
+    gapi.auth2.getAuthInstance().signOut();
 }

@@ -4,23 +4,11 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="https://accounts.google.com/gsi/client" async defer></script>
-        <!-- <script src="https://apis.google.com/js/platform.js" async defer></script>
-        <meta name="google-signin-client_id" content="879776196657-orknjs7fslof1fphcbq6u7an0c3qpqpu.apps.googleusercontent.com"> -->
-        <!-- <meta name="google-signin-client_id" content="879776196657-orknjs7fslof1fphcbq6u7an0c3qpqpu.apps.googleusercontent.com"> -->
-        <!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
-        <!-- <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script> -->
         <title>Webpack 5</title>
         <!-- <link rel="icon" type="image/x-icon" href="/images/favicon.ico"> тут іконка вкладки -->
     </head>
     <body>
         <main class="wrapper_auth">
-            <div id="g_id_onload"
-                data-client_id="879776196657-orknjs7fslof1fphcbq6u7an0c3qpqpu.apps.googleusercontent.com"
-                data-callback="handleCredentialResponse">
-            </div>
-            <div class="g_id_signin" data-type="icon"></div>
-            <div class="g_id_signout" id="signout_button">Sign Out</div>
             <div class="register_form">
                 <p>Реєстрація</p>
                 <input type="text" placeholder="Введіть логін" class="reg_login">
@@ -33,16 +21,33 @@
                 </div>
             </div>
             <div class="autorization_form">
-                <p>Якщо у вас немає профіля, то необхідно зареєструватись</p>
-                <input type="text" placeholder="Введіть логін" class="autentification_login">
-                <input type="text" placeholder="Введіть пароль" class="autentification_pass">
-                <div class="button_wrapper">
-                    <button class="enter_btn">Вхід</button>
-                    <button class="go_register">Перейти до реєстрації</button>
+                <div class="wrapper_autorization_form">
+                    <div class="not_auth_client">
+                        <p>Якщо у вас немає профіля, то необхідно зареєструватись</p>
+                        <input type="text" placeholder="Введіть логін" class="autentification_login">
+                        <input type="text" placeholder="Введіть пароль" class="autentification_pass">
+                        <div class="button_wrapper">
+                            <button class="enter_btn">Вхід</button>
+                            <button class="go_register">Перейти до реєстрації</button>
+                        </div>
+                    </div>
+                    <div class="auth_client"></div>
                 </div>
-                <p class="alert_txt"></p>
-                <p class="confirmed_person"></p>
+                <div class="wrapper_person_txt">
+                    <p class="alert_txt"></p>
+                    <p class="confirmed_person"></p>
+                </div>
+                <p class="auth_txt">Вхід через соціальні мережі</p>
+                <div class="wrapper_social_btn">
+                    <div class="social_btn_content">
+                        <button class="authorize_button"><img class='img_google_btn' src="img/google.png" alt=""></button>
+                        <button class="signout_button"> Вихід </button>
+                    </div>
+                </div>
             </div>
         </main>
+        <script async defer
+        src="https://apis.google.com/js/api.js"
+        onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
     </body>
 </html>

@@ -11,9 +11,11 @@
 }
 p {
     text-transform: uppercase;
-    font-weight: 900;
     margin: 10px auto;
     font: 900 14px Comfortaa;
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
 }
 input{
     width: 100%;
@@ -106,4 +108,45 @@ button{
     padding: 5px;
     display: none;
     border-radius: 10px;
+}
+
+// Social buttons CSS
+
+.social_btn_content{
+    box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.75);
+    border-radius: 5px ;
+}
+
+.social_btn_content{
+    display: flex;
+    justify-content: center;
+}
+
+//Gmail buttons
+.authorize_button,
+.signout_button{
+    background-color:#a5a5a536;
+}
+.authorize_button{
+    width: 35px;
+    height: 35px;
+}
+.img_google_btn{
+    width: 25px;
+    height: 25px;
+}
+.signout_button{
+    display: none;
+}
+
+// Auth client CSS
+
+.img_auth_client{
+    border-radius: 50%;
+    width: 100%;
+    max-width: 120px;
+}
+.client_email{
+    font: 600 12px Comfortaa;
+    opacity: .7;
 }
