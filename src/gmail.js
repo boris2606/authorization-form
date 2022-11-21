@@ -12,7 +12,7 @@ var discoveryDocs = ["https://www.googleapis.com/discovery/v1/apis/people/v1/res
 //   https://console.developers.google.com/apis/credentials?project=_
 // In your API Console project, add a JavaScript origin that corresponds
 //   to the domain where you will be running the script.
-var clientId = '879776196657-s6tqd01pd6858dmd0153dn6nmmp540ft.apps.googleusercontent.com';
+var clientId = '879776196657-orknjs7fslof1fphcbq6u7an0c3qpqpu.apps.googleusercontent.com';
 
 // Enter one or more authorization scopes. Refer to the documentation for
 // the API or https://developers.google.com/people/v1/how-tos/authorizing
