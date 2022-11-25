@@ -62,7 +62,6 @@ let notAuthClientWrapp = document.querySelector('.not_auth_client')
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
     FB.api('/me', function(response) {
-        console.log(response);
       authFbUser.innerHTML =`<p class='client_tit_txt'> Вітаю, ${response.name} Ви авторизовані за допомогою Facebook</p>`
     });
   }
