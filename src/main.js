@@ -1,8 +1,10 @@
 import './styles/main.scss';
 import './gmail.js'
+import './facebook.js'
 // import './bootstrap.js';
 // import $ from "jquery"; // бібліотека jquery
 
+// Авторизація з використанням LocalStorage 
 // Форми
 let regForm = document.querySelector('.register_form')
 let autForm = document.querySelector('.autorization_form')

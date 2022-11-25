@@ -16,6 +16,7 @@ module.exports = {
         clean:true
     },
     devServer: {
+        https: true,
         port: 8888,
         open: true,
         static: {

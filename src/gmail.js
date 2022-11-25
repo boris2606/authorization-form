@@ -19,8 +19,9 @@ var clientId = '879776196657-orknjs7fslof1fphcbq6u7an0c3qpqpu.apps.googleusercon
 // for details.
 var scopes = 'profile';
 
-var authorizeButton = document.querySelector('.authorize_button');
-var signoutButton = document.querySelector('.signout_button');
+var authorizeButtonGo = document.querySelector('.authorize_button_go');
+var signoutButton = document.querySelector('.signout_button_go');
+var fbAythBtn = document.querySelector('.fb-login-button');
 
 window.onload = function handleClientLoad() {
     // Load the API client and auth2 library
@@ -41,7 +42,7 @@ function initClient() {
         // Handle the initial sign-in state.
         updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
 
-        authorizeButton.onclick = handleAuthClick;
+        authorizeButtonGo.onclick = handleAuthClick;
         signoutButton.onclick = handleSignoutClick;
     });
 }
@@ -51,7 +52,8 @@ function updateSigninStatus(isSignedIn) {
     let aythClientWrapp = document.querySelector('.auth_client')  // Wrapper Auth person
     let txtAuth = document.querySelector('.auth_txt')
     if (isSignedIn) {
-        authorizeButton.style.display = 'none';
+        authorizeButtonGo.style.display = 'none';
+        fbAythBtn.style.display = 'none';
         signoutButton.style.display = 'block';
         notAuthClientWrapp.style.display='none';
         txtAuth.style.display='none'
@@ -59,7 +61,8 @@ function updateSigninStatus(isSignedIn) {
         aythClientWrapp.style.display='block'
         document.querySelector('.wrapper_person_txt').style.display='none'
     } else {
-        authorizeButton.style.display = 'block';
+        fbAythBtn.style.display = 'block';
+        authorizeButtonGo.style.display = 'block';
         signoutButton.style.display = 'none';
         notAuthClientWrapp.style.display='block'
         aythClientWrapp.style.display='none'

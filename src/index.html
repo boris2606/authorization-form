@@ -40,14 +40,15 @@
                 <p class="auth_txt">Вхід через соціальні мережі</p>
                 <div class="wrapper_social_btn">
                     <div class="social_btn_content">
-                        <button class="authorize_button"><img class='img_google_btn' src="img/google.png" alt=""></button>
-                        <button class="signout_button"> Вихід </button>
+                        <button class="authorize_button_go"><img class='img_google_btn' src="img/google.png" alt=""></button>
+                        <button class="signout_button_go"> Вихід </button>
+                        <div class="fb-login-button" data-width="" data-size="small" data-button-type="login_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false" onlogin="checkLoginState();"></div>
+                        <button class="signout_button_fb"> Вихід </button>
                     </div>
                 </div>
             </div>
         </main>
-        <script async defer
-        src="https://apis.google.com/js/api.js"
-        onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/uk_UA/sdk.js#xfbml=1&version=v15.0&appId=840920393911003&autoLogAppEvents=1" nonce="MrjKsxbS"></script>
+        <script async defer src="https://apis.google.com/js/api.js" onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
     </body>
 </html>
