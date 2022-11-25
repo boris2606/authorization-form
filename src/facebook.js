@@ -9,8 +9,7 @@ let notAuthClientWrapp = document.querySelector('.not_auth_client')
     for (let i = 0; i < hiddenAttar.length; i++) {
         hiddenAttar[i].style.display = 'none'
     }
-    authFbUser.style.display = 'block'
-    
+    authFbUser.style.display = 'block' 
   }
   function showAuthElements(){
     let hiddenAttar = document.querySelectorAll(' .fb-login-button, .not_auth_client, .auth_txt, .authorize_button_go')
@@ -63,7 +62,7 @@ let notAuthClientWrapp = document.querySelector('.not_auth_client')
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
     FB.api('/me', function(response) {
-      authFbUser.innerHTML =
-        'Thanks for logging in, ' + response.name + '!' + ' ' + response.email;
+        console.log(response);
+      authFbUser.innerHTML =`<p class='client_tit_txt'> Вітаю, ${response.name} Ви авторизовані за допомогою Facebook</p>`
     });
   }

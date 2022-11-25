@@ -47,27 +47,32 @@ function initClient() {
     });
 }
 
+function hideElements (){
+    let hiddenAttar = document.querySelectorAll('.authorize_button_go, .fb-login-button, .not_auth_client, .auth_txt, .wrapper_person_txt')
+    for (let i = 0; i < hiddenAttar.length; i++) {
+        hiddenAttar[i].style.display = 'none'
+    }
+  }
+  
+function showElements (){
+    let hiddenAttar = document.querySelectorAll('.authorize_button_go, .fb-login-button, .not_auth_client, .auth_txt, .wrapper_person_txt')
+    for (let i = 0; i < hiddenAttar.length; i++) {
+        hiddenAttar[i].style.display = 'block'
+    }
+  }
 function updateSigninStatus(isSignedIn) {
     let notAuthClientWrapp = document.querySelector('.not_auth_client') // Wrapper of registration fields
     let aythClientWrapp = document.querySelector('.auth_client')  // Wrapper Auth person
     let txtAuth = document.querySelector('.auth_txt')
     if (isSignedIn) {
-        authorizeButtonGo.style.display = 'none';
-        fbAythBtn.style.display = 'none';
+        hideElements()
         signoutButton.style.display = 'block';
-        notAuthClientWrapp.style.display='none';
-        txtAuth.style.display='none'
         makeApiCall();
         aythClientWrapp.style.display='block'
-        document.querySelector('.wrapper_person_txt').style.display='none'
     } else {
-        fbAythBtn.style.display = 'block';
-        authorizeButtonGo.style.display = 'block';
+        showElements()
         signoutButton.style.display = 'none';
-        notAuthClientWrapp.style.display='block'
         aythClientWrapp.style.display='none'
-        txtAuth.style.display='block'
-        document.querySelector('.wrapper_person_txt').style.display='block'
     }
 }
 
